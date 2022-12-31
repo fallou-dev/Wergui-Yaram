@@ -5,6 +5,21 @@ public class Service {
 	private int idservice;
 	
 	private String nom_service;
+	
+	
+
+	public Service() {
+		
+	}
+
+
+
+	public Service(String nom_service) {
+		super();
+		this.nom_service = nom_service;
+	}
+
+	
 
 	public int getIdservice() {
 		return idservice;
