@@ -2,7 +2,7 @@
 
 # Fonctionnalité :
  # => Gestion des consultations
-    - Gérer consultation 
+   - Gérer consultation 
    - Gérer prescription
  # =>Gestion des Utilisateurs
    - Gérer compte Patient 
