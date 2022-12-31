@@ -24,7 +24,41 @@ public class Patient {
 	
 	private String Personne_a_prevenir;
 	
+	private String tel_Personne_a_prevenir;
+	
 	private int valide_compte;
+
+	
+	
+	public Patient() {
+	
+	}
+
+	public Patient(String nom_patient, String prenom_patient, String email, String telephone, String motdepasse,
+			String date_de_naissance, String sexe, String adresse, String situation_familliale,
+			String personne_a_prevenir, String tel_Personne_a_prevenir, int valide_compte) {
+		super();
+		this.nom_patient = nom_patient;
+		this.prenom_patient = prenom_patient;
+		this.email = email;
+		this.telephone = telephone;
+		this.motdepasse = motdepasse;
+		Date_de_naissance = date_de_naissance;
+		Sexe = sexe;
+		Adresse = adresse;
+		Situation_familliale = situation_familliale;
+		Personne_a_prevenir = personne_a_prevenir;
+		this.tel_Personne_a_prevenir = tel_Personne_a_prevenir;
+		this.valide_compte = valide_compte;
+	}
+
+	public String getTel_Personne_a_prevenir() {
+		return tel_Personne_a_prevenir;
+	}
+
+	public void setTel_Personne_a_prevenir(String tel_Personne_a_prevenir) {
+		this.tel_Personne_a_prevenir = tel_Personne_a_prevenir;
+	}
 
 	public int getIdpatient() {
 		return idpatient;

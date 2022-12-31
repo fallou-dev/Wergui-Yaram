@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,17 +28,22 @@ public class Medecin_dao {
 	}
 	
 	
-	public static int insertUser(Medecin user) {
+	public static int insertMedecin(Medecin medecin) {
 		int status = 0;
 		
 		try {
 			
 			Connection con = Medecin_dao.getconnection();
-			PreparedStatement ps = con.prepareStatement(" insert into Medecin (nom_medcin,prenom,login,password) values (?,?,?,?)" );
-			ps.setString(1, user.getNom());
-			ps.setString(2, user.getPrenom());
-			ps.setString(3, user.getLogin());
-			ps.setString(4, user.getPassword());
+			PreparedStatement ps = con.prepareStatement(" insert into medecin (nom_medecin, prenom_medecin,email,telephone,motdepasse,valide_compte,specialite,role,service_serviceid) values (?,?,?,?,?,?,?,?,?)" );
+			ps.setString(1,medecin.getNom_medecin());
+			ps.setString(2, medecin.getPrenom_medecin());
+			ps.setString(3, medecin.getEmail());
+			ps.setString(4, medecin.getTelephone());
+			ps.setString(5, medecin.getMotdepasse());
+			ps.setInt(6, medecin.getValide_compte());
+			ps.setString(7, medecin.getSpecialite());
+			ps.setString(8, medecin.getRole());
+			ps.setInt(9, medecin.getService_serviceid());
 			
 			status = ps.executeUpdate();
 			
@@ -51,17 +57,22 @@ public class Medecin_dao {
 		return status;
 	}
 	
-	public static void updateUser(User user) {
+	public static void updateUser(Medecin medecin) {
 		
 		try {
 			
-			Connection con = Userdao.getconnection();
-			PreparedStatement ps = con.prepareStatement(" update user set  nom=?,prenom=?,login=?,password=? where id = ?" );
-			ps.setString(1, user.getNom());
-			ps.setString(2, user.getPrenom());
-			ps.setString(3, user.getLogin());
-			ps.setString(4, user.getPassword());
-			ps.setInt(5, user.getId());
+			Connection con = Medecin_dao.getconnection();
+			PreparedStatement ps = con.prepareStatement(" update user set nom_medecin=?, prenom_medecin=?,email=?,telephone=?,motdepasse=?,valide_compte=?,specialite=?,role=?,service_serviceid=? where idmedecin = ?" );
+			ps.setString(1,medecin.getNom_medecin());
+			ps.setString(2, medecin.getPrenom_medecin());
+			ps.setString(3, medecin.getEmail());
+			ps.setString(4, medecin.getTelephone());
+			ps.setString(5, medecin.getMotdepasse());
+			ps.setInt(6, medecin.getValide_compte());
+			ps.setString(7, medecin.getSpecialite());
+			ps.setString(8, medecin.getRole());
+			ps.setInt(9, medecin.getService_serviceid());
+			
 			
 			ps.executeUpdate();
 			
@@ -80,8 +91,8 @@ public class Medecin_dao {
 		
 		try {
 			
-			Connection con = Userdao.getconnection();
-			PreparedStatement ps = con.prepareStatement(" delete from user where id = ?" );
+			Connection con = Medecin_dao.getconnection();
+			PreparedStatement ps = con.prepareStatement(" update medecin set valide_compte = 0 where idmedecin = ?" );
 			ps.setInt(1, id);
 			
 			ps.executeUpdate();
@@ -96,23 +107,29 @@ public class Medecin_dao {
 	
 	}
 	
-	public static User getUserById(int id) {
+	public static Medecin getUserById(int id) {
 		
-		User user = new User();
+		Medecin medecin = new Medecin();
 		
 		try {
 			
-			Connection con = Userdao.getconnection();
-			PreparedStatement ps = con.prepareStatement(" select nom , prenom , login , password from user where id = ?" );
+			Connection con = Medecin_dao.getconnection();
+			PreparedStatement ps = con.prepareStatement(" select nom_medecin, prenom_medecin,email,telephone,motdepasse,valide_compte,specialite,role,service_serviceid from medecin where idmedecin = ?" );
 			ps.setInt(1, id);
 			
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				user.setNom(rs.getString(1));
-				user.setPrenom(rs.getString(2));
-				user.setLogin(rs.getString(3));
-				user.setPassword(rs.getString(4));
+				medecin.setNom_medecin(rs.getString(1));
+				medecin.setPrenom_medecin(rs.getString(2));
+				medecin.setEmail(rs.getString(3));
+				medecin.setTelephone(rs.getString(4));
+				medecin.setMotdepasse(rs.getString(5));
+				medecin.setValide_compte(rs.getInt(6));
+				medecin.setSpecialite(rs.getString(7));
+				medecin.setRole(rs.getString(8));
+				medecin.setService_serviceid(rs.getInt(9));
+				
 			}
 			con.close();
 			
@@ -121,30 +138,35 @@ public class Medecin_dao {
 			System.out.print("Erreur");
 		}
 		
-		return user;
+		return medecin;
 		
 	}
 	
-	public static List<User> getAllUser(){
+	public static List<Medecin> getAllMedecin(){
 		
-		List<User> liste = new ArrayList<User>();
+		List<Medecin> liste = new ArrayList<Medecin>();
 		
 	try {
 			
-			Connection con = Userdao.getconnection();
-			PreparedStatement ps = con.prepareStatement(" select * from user" );
+			Connection con = Medecin_dao.getconnection();
+			PreparedStatement ps = con.prepareStatement(" select * from medecin" );
 		
 			
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				User user = new User();
-				user.setId(rs.getInt(1));
-				user.setNom(rs.getString(2));
-				user.setPrenom(rs.getString(3));
-				user.setLogin(rs.getString(4));
-				user.setPassword(rs.getString(5));
-				liste.add(user);
+				Medecin medecin = new Medecin();
+				medecin.setNom_medecin(rs.getString(1));
+				medecin.setPrenom_medecin(rs.getString(2));
+				medecin.setEmail(rs.getString(3));
+				medecin.setTelephone(rs.getString(4));
+				medecin.setMotdepasse(rs.getString(5));
+				medecin.setValide_compte(rs.getInt(6));
+				medecin.setSpecialite(rs.getString(7));
+				medecin.setRole(rs.getString(8));
+				medecin.setService_serviceid(rs.getInt(9));
+
+				liste.add(medecin);
 			}
 			con.close();
 			
@@ -157,30 +179,35 @@ public class Medecin_dao {
 		
 	}
 	
-	public static User getUserBylogin(String login,String password) {
+	public static Medecin getMedecinBylogin(String login,String password) {
 	
-		Connection con = Userdao.getconnection();
-		User user = null;
+		Connection con = Medecin_dao.getconnection();
+		Medecin medecin = null;
 		PreparedStatement ps;
 		try {
 			
-			ps = con.prepareStatement(" select * from user where login = ? and password = ?" );
+			ps = con.prepareStatement(" select * from medecin where telephone = ? and motdepasse = ?" );
 			
 			ps.setString(1, login);
 			ps.setString(2, password);
 			
 			ResultSet rs = ps.executeQuery();
-			User user2 = new User();
+			Medecin medecin2 = new Medecin();
 			if(rs.next()) {
-				user2.setId(rs.getInt("id"));
-				user2.setNom(rs.getString("nom"));
-				user2.setPrenom(rs.getString("prenom"));
-				user2.setLogin(rs.getString("login"));
-				user2.setPassword(rs.getString("password"));
+				
+				medecin2.setNom_medecin(rs.getString("nom_medecin"));
+				medecin2.setPrenom_medecin(rs.getString("prenom_medecin"));
+				medecin2.setEmail(rs.getString("email"));
+				medecin2.setTelephone(rs.getString("telephone"));
+				medecin2.setMotdepasse(rs.getString("motdepasse"));
+				medecin2.setValide_compte(rs.getInt("valide_compte"));
+				medecin2.setSpecialite(rs.getString("specialite"));
+				medecin2.setRole(rs.getString("role"));
+				medecin2.setService_serviceid(rs.getInt("service_serviceid"));
 
-				user = user2;
+				medecin = medecin2;
 				con.close();
-				return user2;
+				return medecin2;
 			}
 			
 		} catch (SQLException e) {
@@ -188,7 +215,7 @@ public class Medecin_dao {
 			e.printStackTrace();
 		}
 		
-		return user;
+		return medecin;
 	}
 	
 

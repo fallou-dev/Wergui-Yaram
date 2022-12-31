@@ -22,6 +22,24 @@ public class Medecin {
 	
 	private int service_serviceid;
 
+	public Medecin() {
+		super();
+	}
+
+	public Medecin(String nom_medecin, String prenom_medecin, String email, String telephone, String motdepasse,
+			int valide_compte, String specialite, String role, int service_serviceid) {
+		super();
+		this.nom_medecin = nom_medecin;
+		this.prenom_medecin = prenom_medecin;
+		this.email = email;
+		this.telephone = telephone;
+		this.motdepasse = motdepasse;
+		this.valide_compte = valide_compte;
+		this.specialite = specialite;
+		this.role = role;
+		this.service_serviceid = service_serviceid;
+	}
+
 	public int getIdmedecin() {
 		return idmedecin;
 	}
