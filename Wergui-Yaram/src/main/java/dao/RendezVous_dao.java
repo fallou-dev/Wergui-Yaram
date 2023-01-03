@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,7 +35,7 @@ public class RendezVous_dao {
 		try {
 			
 			Connection con = RendezVous_dao.getconnection();
-			PreparedStatement ps = con.prepareStatement(" insert into rendez-vous (date_rv,medecin_idmedecin,patient_idpatient) values (?,?,?)" );
+			PreparedStatement ps = con.prepareStatement("insert into rendez-vous (date_rv,medecin_idmedecin,patient_idpatient) values (?,?,?)" );
 			ps.setDate(1,(Date) rdv.getDate_rv() );
 			ps.setInt(2, rdv.getMedecin_idmedecin());
 			ps.setInt(3, rdv.getPatient_idpatient());

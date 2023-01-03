@@ -11,6 +11,18 @@ public class RendezVous {
 	private int medecin_idmedecin;
 	
 	private int patient_idpatient;
+	
+	
+
+	public RendezVous() {
+		
+	}
+
+	public RendezVous(Date date_rv, int medecin_idmedecin, int patient_idpatient) {
+		this.date_rv = date_rv;
+		this.medecin_idmedecin = medecin_idmedecin;
+		this.patient_idpatient = patient_idpatient;
+	}
 
 	public int getIdRendez_vous() {
 		return idRendez_vous;
