@@ -38,10 +38,10 @@
 
 <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
  <div id="corps">
-<h1 id="titre-principal">Modification d'un utilisateur</h1>
+<h1 id="titre-principal">Modification d'un medecin</h1>
  <form action="" method="post">
    <fieldset>
-     <legend>Modification d'un utilisateur</legend>
+     <legend>Modification d'un medecin</legend>
      <input type="hidden" name="id" value="${medecin.idmedecin }"/>
      
     <label>Prenom</label><br>
