@@ -19,7 +19,7 @@ h1 {
  <div id="corps">
 <c:choose>
 	<c:when test="${empty patients }">
-		<p>La liste des utilisateurs est vide</p>
+		<p>La liste des patients est vide</p>
 	</c:when>
 	<c:otherwise>
 		<table border="1" cellspacing="0" cellpadding="10" id="mytable">
